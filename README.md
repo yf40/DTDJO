@@ -1,4 +1,4 @@
-# DTDJO: Dehazing Target Detection Algorithm Based on Joint Optimization
+# DTDJO: Foggy Water Surface Target Detection Model Based on Joint Optimization
 
 This repository contains the implementation of DTDJO, a joint optimization framework for foggy water surface target detection.
 
