@@ -1,0 +1,54 @@
+model:
+  nc: 80
+  dehaze_channels: 64
+  detect_channels: 64
+
+data:
+  train_img_dir: "data/train/images"
+  train_label_dir: "data/train/labels"
+  val_img_dir: "data/val/images"
+  val_label_dir: "data/val/labels"
+  test_img_dir: "data/test/images"
+  test_label_dir: "data/test/labels"
+  img_size: 640
+  batch_size: 8
+  num_workers: 4
+
+train:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: "cosine"
+  warmup_epochs: 3
+  save_interval: 10
+  eval_interval: 5
+  dehaze_weight: 1.0
+  detect_weight: 1.0
+
+optimizer:
+  type: "Adam"
+  betas: [0.9, 0.999]
+
+loss:
+  dehaze:
+    alpha: 0.6
+    beta: 0.3
+    gamma: 0.1
+  detect:
+    box_weight: 0.05
+    obj_weight: 1.0
+    cls_weight: 0.5
+
+test:
+  conf_thres: 0.25
+  iou_thres: 0.45
+  max_det: 300
+
+checkpoint:
+  save_dir: "checkpoints"
+  best_model: "best_model.pth"
+  last_model: "last_model.pth"
+
+device: "cuda"
+seed: 42
